@@ -2,7 +2,6 @@ from flask import Flask, request, jsonify
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
 import numpy as np
-import os
 
 app = Flask(__name__)
 model = load_model("cats_vs_dogs_model.keras")
@@ -20,7 +19,5 @@ def predict():
     pred = model.predict(img_array)[0][0]
     label = 'Dog' if pred > 0.5 else 'Cat'
     return jsonify({'prediction': label, 'confidence': float(pred)})
- # comment
-if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 5000))  # Render provides PORT
-    app.run(host="0.0.0.0", port=port)        # Bind to 0.0.0.0 for Render
+
+# ❌ No app.run(...) here
