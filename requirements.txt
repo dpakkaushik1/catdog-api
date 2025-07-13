@@ -2,4 +2,6 @@ Flask
 tensorflow
 numpy
 pillow
+gunicorn
+
 # trigger redeploy
